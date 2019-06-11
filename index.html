@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 	<head>
-		<title>three.js webgl - geometry - text</title>
+		<title>SSG EDITOR</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -14,13 +14,17 @@
 			}
 			#info {
 				position: absolute;
-				top: 10px;
+				top: 10%;
+				left: 10%;
 				width: 100%;
-				text-align: center;
+				/* text-align: center; */
 				z-index: 100;
 				display:block;
+				font-size:20px;
+				font-weight:bold;
+				color: black;
 			}
-			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+			/* #info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer } */
 		</style>
     <script src="js/RecordRTC.js"></script>
     <script src="js/screenshot.js"></script>
@@ -28,13 +32,67 @@
 	<body>
 
 		<div id="info">
-			<input type="text" id="textInput" value="">
-	    <button onclick="myText()">input</button><p>
-			<input type="range" min="0" max="100" value="0" id="speed"><p>
+			TEXT
+			<input type="text" id="textInput" value="" size=12 style="line-height: 25px;font-size:18px">
+	    <button onclick="myText()" style="color: white;background:#000080; font-size:18px; line-height: 25px">입력</button><p>
+			<!-- <input type="range" min="0" max="100" value="0" id="speed"> -->
+			<p><p><p><p>
+				● 서체
+				<button onclick="" style="line-height: 18px;font-size:18px" size="1">1</button>
+				<button onclick="" style="line-height: 18px;font-size:18px" size="2">2</button>
+				<button onclick="" style="line-height: 18px;font-size:18px" size="3">3</button>
+
+			<p>
+				● 굵기
+				<button onclick="" style="line-height: 18px;font-size:18px" size="3">1</button>
+				<button onclick="" style="line-height: 18px;font-size:18px" size="3">2</button>
+				<button onclick="" style="line-height: 18px;font-size:18px" size="3">3</button>
+
+				<p>
+					● 시선
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">1</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">2</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">3</button>
+
+				<p>
+					● 칼라
+					<button onclick="" style="line-height: 18px;font-size:18px;color:red;background:red" size="3">1</button>
+					<button onclick="" style="line-height: 18px;font-size:18px;color:orange;background:orange" size="3">2</button>
+					<button onclick="" style="line-height: 18px;font-size:18px;color:yellow;background:yellow" size="3">3</button>
+					<button onclick="" style="line-height: 18px;font-size:18px;color:greenyellow;background:greenyellow" size="3">4</button>
+					<button onclick="" style="line-height: 18px;font-size:18px;color:green;background:green" size="3">5</button>
+					<button onclick="" style="line-height: 18px;font-size:18px;color:aqua;background:aqua" size="3">6</button>
+					<button onclick="" style="line-height: 18px;font-size:18px;color:blue;background:blue" size="3">7</button>
+					<button onclick="" style="line-height: 18px;font-size:18px;color:purple;background:purple" size="3">8</button>
+					<button onclick="" style="line-height: 18px;font-size:18px;color:brown;background:brown" size="3">9</button>
+					<button onclick="" style="line-height: 18px;font-size:18px;color:gray;background:gray" size="3">0</button>
+
+					<p>
+					● 액션
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">1</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">2</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">3</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">4</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">5</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">6</button>
+
+					<p>
+					● 이펙트
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">1</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">2</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">3</button>
+					<button onclick="" style="line-height: 18px;font-size:18px" size="3">4</button>
+
+        <p><p>
+					<button onclick="" style="line-height: 18px;font-size:18px; color: white;background:gray;padding:3px 30px" size="3">취 소</button>
+					<button onclick="" style="line-height: 18px;font-size:18px; color: white;background:gray;padding:5px 40px" size="3">확 인</button>
+
+					<p>
+        <button onclick="" style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">저 장</button>
+
 			<span class="button" id="color">change color</span>,
 			<span class="button" id="font">change font</span>,
 			<span class="button" id="weight">change weight</span>
-
 			<!-- <span class="button" id="bevel">change bevel</span><p> -->
 
 		  <p><button type="button" id="startRecording" name="button">Start Recording</button>
@@ -296,8 +354,8 @@
 			}
 
 			function render() {
-        // var rotation = 0.01;
-				var rotation = document.getElementById("speed").value*0.001;
+        var rotation = 0.01;
+				// var rotation = document.getElementById("speed").value*0.001;
 				group.rotation.y += rotation; //회전속도
 				camera.lookAt( cameraTarget );
 				renderer.clear();
