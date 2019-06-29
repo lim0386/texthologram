@@ -12,7 +12,7 @@
 	  width: 50%;
 	}
 	.right-box {
-	  background: blue;
+	  /* background: blue; */
 	  float: right;
 	  width: 50%;
 	}
@@ -35,25 +35,25 @@
 					<p>
 						<p>
 							<p>
-								● 서체&nbsp;&nbsp;&nbsp;
+								● 서체&nbsp;&nbsp;&nbsp;&nbsp;
 								<button onclick="fontOne()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="1">1</button>
 								<button onclick="fontTwo()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="2">2</button>
 								<button onclick="fontThree()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
 
 								<p>
-									● 굵기&nbsp;&nbsp;&nbsp;
+									● 굵기&nbsp;&nbsp;&nbsp;&nbsp;
 									<button onclick="textRegular()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
 									<button onclick="textBold()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
 									<!-- <button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button> -->
 
 									<p>
-										● 시선&nbsp;&nbsp;&nbsp;
+										● 시선&nbsp;&nbsp;&nbsp;&nbsp;
 										<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
 										<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
 										<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
 
 										<p>
-											● 칼라&nbsp;&nbsp;&nbsp;
+											● 칼라&nbsp;&nbsp;&nbsp;&nbsp;
 											<button id="buttonRed" style="line-height: 18px;font-size:18px;color:red;background:red" size="3">1</button>
 											<button id="buttonOrange" style="line-height: 18px;font-size:18px;color:Orange;background:Orange" size="3">1</button>
 
@@ -69,7 +69,7 @@
 											<button id="buttonGray" style="line-height: 18px;font-size:18px;color:gray;background:gray" size="3">0</button>
 
 											<p>
-												● 액션&nbsp;&nbsp;&nbsp;
+												● 액션&nbsp;&nbsp;&nbsp;&nbsp;
 												<button onclick="renderZero()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
 												<button onclick="renderY()" id="rotY" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
 												<button onclick="renderX()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
@@ -86,15 +86,22 @@
 
 													<p>
 														<p>
-															<button onclick="" style="line-height: 18px;font-size:18px; color: white;background:gray;padding:3px 30px" size="3">취 소</button>
+															<button id='startRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">저 장</button>
+															<button id='stopRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">마 침</button>
+															<!-- <button onclick="" style="line-height: 18px;font-size:18px; color: white;background:gray;padding:3px 30px" size="3">취 소</button>
 															<button onclick="" style="line-height: 18px;font-size:18px; color: white;background:gray;padding:5px 40px" size="3">확 인</button>
-															<p>
+															<p> -->
 
-																<span class="button" id="color">change color</span>,
+																<!-- <span class="button" id="color">change color</span>,
 																<span class="button" id="font">change font</span>,
-																<span class="button" id="weight">change weight</span>
+																<span class="button" id="weight">change weight</span> -->
 																<!-- <span class="button" id="bevel">change bevel</span><p> -->
 	</div>
+	<div class = 'right-box'>
+		<p style="font-size:50px">&nbsp;
+	<!-- <button onclick="" style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">저 장</button> -->
+</div>
+
 	<script src="js/RecordRTC.js"></script>
 	<script src="js/screenshot.js"></script>
 	<script src="build/three.js"></script>
@@ -103,6 +110,7 @@
 	<script src="js/stats.min.js"></script>
 
 	<!-- <div class='right-box'> -->
+
 	<script>
 		var canvas = document.getElementById("myCanvas");
 
@@ -124,8 +132,8 @@
 			bevelSize = 1.5,
 			bevelEnabled = true,
 			font = undefined,
-			fontName = "NanumGothic", // helvetiker, optimer, gentilis, droid sans, droid serif
-			fontWeight = "Bold"; // normal bold
+			fontName = "NanumMyeongjo", // helvetiker, optimer, gentilis, droid sans, droid serif
+			fontWeight = "Regular"; // normal bold
 		var rotationX = 0;
 		var rotationY = 0;
 
@@ -135,8 +143,8 @@
 
 		var mirror = true;
 		var fontMap = {
-			"NanumGothic": 0,
-			"NanumMyeongjo": 1,
+			"NanumMyeongjo": 0,
+			"NanumGothic": 1,
 			"BMHANNAPro": 2
 			// "gentilis": 2,
 			// "droid/droid_sans": 3,
@@ -249,12 +257,52 @@
 			// STATS
 			stats = new Stats();
 			document.getElementById("buttonRed").addEventListener('click', function() {
-				pointLight.color.setHSL(1, 1, 0.5);
+				pointLight.color.setRGB(255, 0, 0);
 				hex = decimalToHex(pointLight.color.getHex());
 			}, false);
 
 			document.getElementById("buttonOrange").addEventListener('click', function() {
-				pointLight.color.setHSL(0.1, 1, 0.5);
+				pointLight.color.setRGB(255, 165, 0);
+				hex = decimalToHex(pointLight.color.getHex());
+			}, false);
+
+			document.getElementById("buttonYellow").addEventListener('click', function() {
+				pointLight.color.setRGB(255, 255, 0);
+				hex = decimalToHex(pointLight.color.getHex());
+			}, false);
+
+			document.getElementById("buttonGreenyellow").addEventListener('click', function() {
+				pointLight.color.setRGB(173, 255, 47);
+				hex = decimalToHex(pointLight.color.getHex());
+			}, false);
+
+			document.getElementById("buttonGreen").addEventListener('click', function() {
+				pointLight.color.setRGB(0, 255, 0);
+				hex = decimalToHex(pointLight.color.getHex());
+			}, false);
+
+			document.getElementById("buttonAqua").addEventListener('click', function() {
+				pointLight.color.setRGB(0, 255, 255);
+				hex = decimalToHex(pointLight.color.getHex());
+			}, false);
+
+			document.getElementById("buttonBlue").addEventListener('click', function() {
+				pointLight.color.setRGB(0, 0, 255);
+				hex = decimalToHex(pointLight.color.getHex());
+			}, false);
+
+			document.getElementById("buttonPurple").addEventListener('click', function() {
+				pointLight.color.setRGB(238,130,238);
+				hex = decimalToHex(pointLight.color.getHex());
+			}, false);
+
+			document.getElementById("buttonBrown").addEventListener('click', function() {
+				pointLight.color.setRGB(165, 42, 42);
+				hex = decimalToHex(pointLight.color.getHex());
+			}, false);
+
+			document.getElementById("buttonGray").addEventListener('click', function() {
+				pointLight.color.setRGB(128,128,128);
 				hex = decimalToHex(pointLight.color.getHex());
 			}, false);
 			// document.getElementById("font").addEventListener('click', function() {
@@ -300,13 +348,13 @@
 		}
 
 		function fontOne() {
-			fontName = "NanumGothic";
+			fontName = "NanumMyeongjo";
 			loadFont();
 			// refreshText();
 		}
 
 		function fontTwo() {
-			fontName = "NanumMyeongjo";
+			fontName = "NanumGothic";
 			loadFont();
 			refreshText();
 		}
@@ -439,15 +487,8 @@
 			rotationY = 0;
 		}
 
-		 function buttonRed() {
-			//  colorH = 0;
-			//  colorS = 100;
-			//  colorL = 50;
-		 }
-
 
 	</script>
-<!-- </div> -->
 	<script type="text/javascript">
 		/* JAVASCRIPT CODE for video */
 		var elementToShare = document.querySelector('canvas');
@@ -485,8 +526,8 @@
 			});
 		};
 	</script>
-
-	<button onclick="" style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">저 장</button>
+	<!-- <button id='startRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">저 장</button>
+	<button id='stopRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">마 침</button> -->
 </body>
 
 </html>
