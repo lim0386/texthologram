@@ -46,26 +46,26 @@
 									<button onclick="textBold()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
 									<!-- <button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button> -->
 
-									<p>
+									<!-- <p>
 										● 시선&nbsp;&nbsp;&nbsp;&nbsp;
-										<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
-										<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
-										<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
+										<button id="textX" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
+										<button id="textY" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
+										<button id="textZ" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button> -->
 
 										<p>
 											● 칼라&nbsp;&nbsp;&nbsp;&nbsp;
 											<button id="buttonRed" style="line-height: 18px;font-size:18px;color:red;background:red" size="3">1</button>
-											<button id="buttonOrange" style="line-height: 18px;font-size:18px;color:Orange;background:Orange" size="3">1</button>
+											<!-- <button id="buttonOrange" style="line-height: 18px;font-size:18px;color:Orange;background:Orange" size="3">1</button> -->
 
 											<!-- <button onclick="buttonRed()" style="line-height: 18px;font-size:18px;color:red;background:red" size="3">1</button> -->
 											<!-- <button onclick="buttonOrange()" style="line-height: 18px;font-size:18px;color:orange;background:orange" size="3">2</button> -->
 											<button id="buttonYellow" style="line-height: 18px;font-size:18px;color:yellow;background:yellow" size="3">3</button>
-											<button id="buttonGreenyellow" style="line-height: 18px;font-size:18px;color:greenyellow;background:greenyellow" size="3">4</button>
+											<!-- <button id="buttonGreenyellow" style="line-height: 18px;font-size:18px;color:greenyellow;background:greenyellow" size="3">4</button> -->
 											<button id="buttonGreen" style="line-height: 18px;font-size:18px;color:green;background:green" size="3">5</button>
 											<button id="buttonAqua" style="line-height: 18px;font-size:18px;color:aqua;background:aqua" size="3">6</button>
 											<button id="buttonBlue" style="line-height: 18px;font-size:18px;color:blue;background:blue" size="3">7</button>
-											<button id="buttonPurple" style="line-height: 18px;font-size:18px;color:purple;background:purple" size="3">8</button>
-											<button id="buttonBrown" style="line-height: 18px;font-size:18px;color:brown;background:brown" size="3">9</button>
+											<!-- <button id="buttonPurple" style="line-height: 18px;font-size:18px;color:purple;background:purple" size="3">8</button> -->
+											<!-- <button id="buttonBrown" style="line-height: 18px;font-size:18px;color:brown;background:brown" size="3">9</button> -->
 											<button id="buttonGray" style="line-height: 18px;font-size:18px;color:gray;background:gray" size="3">0</button>
 
 											<p>
@@ -77,12 +77,12 @@
 												<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">5</button>
 												<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">6</button> -->
 
-												<p>
+												<!-- <p>
 													● 이펙트
 													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
 													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
 													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
-													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">4</button>
+													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">4</button> -->
 
 													<p>
 														<p>
@@ -141,11 +141,15 @@
 		var colorS = 0;
 		var colorL = 0;
 
+		var textX = 0;
+		var textY = 400;
+		var textZ = 700;
+
 		var mirror = true;
 		var fontMap = {
 			"NanumMyeongjo": 0,
 			"NanumGothic": 1,
-			"timon": 2
+			"optimer": 2
 			// "gentilis": 2,
 			// "droid/droid_sans": 3,
 			// "droid/droid_serif": 4
@@ -178,7 +182,8 @@
 
 			// CAMERA
 			camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500);
-			camera.position.set(0, 400, 700);
+			console.log(textX, textY, textZ);
+			camera.position.set(textX,textY, textZ);
 			cameraTarget = new THREE.Vector3(0, 150, 0);
 
 			// SCENE
@@ -261,20 +266,20 @@
 				hex = decimalToHex(pointLight.color.getHex());
 			}, false);
 
-			document.getElementById("buttonOrange").addEventListener('click', function() {
-				pointLight.color.setRGB(255, 165, 0);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
+			// document.getElementById("buttonOrange").addEventListener('click', function() {
+			// 	pointLight.color.setRGB(255, 165, 0);
+			// 	hex = decimalToHex(pointLight.color.getHex());
+			// }, false);
 
 			document.getElementById("buttonYellow").addEventListener('click', function() {
 				pointLight.color.setRGB(255, 255, 0);
 				hex = decimalToHex(pointLight.color.getHex());
 			}, false);
 
-			document.getElementById("buttonGreenyellow").addEventListener('click', function() {
-				pointLight.color.setRGB(173, 255, 47);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
+			// document.getElementById("buttonGreenyellow").addEventListener('click', function() {
+			// 	pointLight.color.setRGB(173, 255, 47);
+			// 	hex = decimalToHex(pointLight.color.getHex());
+			// }, false);
 
 			document.getElementById("buttonGreen").addEventListener('click', function() {
 				pointLight.color.setRGB(0, 255, 0);
@@ -291,20 +296,22 @@
 				hex = decimalToHex(pointLight.color.getHex());
 			}, false);
 
-			document.getElementById("buttonPurple").addEventListener('click', function() {
-				pointLight.color.setRGB(238,130,238);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
-
-			document.getElementById("buttonBrown").addEventListener('click', function() {
-				pointLight.color.setRGB(165, 42, 42);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
+			// document.getElementById("buttonPurple").addEventListener('click', function() {
+			// 	pointLight.color.setRGB(238,130,238);
+			// 	hex = decimalToHex(pointLight.color.getHex());
+			// }, false);
+			//
+			// document.getElementById("buttonBrown").addEventListener('click', function() {
+			// 	pointLight.color.setRGB(165, 42, 42);
+			// 	hex = decimalToHex(pointLight.color.getHex());
+			// }, false);
 
 			document.getElementById("buttonGray").addEventListener('click', function() {
 				pointLight.color.setRGB(128,128,128);
 				hex = decimalToHex(pointLight.color.getHex());
 			}, false);
+
+
 			// document.getElementById("font").addEventListener('click', function() {
 			// 	fontIndex++;
 			// 	fontName = reverseFontMap[fontIndex % reverseFontMap.length];
@@ -360,7 +367,7 @@
 		}
 
 		function fontThree() {
-			fontName = "timon";
+			fontName = "helvetiker";
 			loadFont();
 			// refreshText();
 		}
