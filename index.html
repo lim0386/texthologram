@@ -8,13 +8,15 @@
 	<style>
 	.left-box {
 	  /* background: red; */
+		position: relative;
 	  float: left;
 	  width: 50%;
 	}
-	.right-box {
+	.myCanvas {
 	  /* background: blue; */
-	  float: right;
-	  width: 50%;
+		position: absolute;
+		height: 1920;
+		width: 100%;
 	}
 	</style>
 </head>
@@ -113,6 +115,8 @@
 
 	<script>
 		var canvas = document.getElementById("myCanvas");
+    // var canvas = document.querySelector('canvas');
+    // var video = document.querySelector('video');
 
 		if (WEBGL.isWebGLAvailable() === false) {
 			document.body.appendChild(WEBGL.getWebGLErrorMessage());
@@ -137,9 +141,9 @@
 		var rotationX = 0;
 		var rotationY = 0;
 
-    var colorH = 0;
-		var colorS = 0;
-		var colorL = 0;
+    // var colorH = 0;
+		// var colorS = 0;
+		// var colorL = 0;
 
 		var textX = 0;
 		var textY = 400;
@@ -178,8 +182,8 @@
 
 		function init() {
 			container = document.createElement('div');
-			document.body.appendChild(container);
 
+			document.body.appendChild(container);
 			// CAMERA
 			camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500);
 			console.log(textX, textY, textZ);
@@ -203,16 +207,16 @@
 			var hash = document.location.hash.substr(1);
 
 			if (hash.length !== 0) {
-				var colorhash = hash.substring(0, 6);
-				var fonthash = hash.substring(0, 2);
-				var weighthash = hash.substring(7, 8);
-				var bevelhash = hash.substring(8, 9);
-				var texthash = hash.substring(10);
-				hex = colorhash;
-				pointLight.color.setHex(parseInt(colorhash, 16));
-				fontName = reverseFontMap[parseInt(fonthash)];
-				fontWeight = reverseWeightMap[parseInt(weighthash)];
-				bevelEnabled = parseInt(bevelhash);
+				// var colorhash = hash.substring(0, 6);
+				// var fonthash = hash.substring(0, 2);
+				// var weighthash = hash.substring(7, 8);
+				// var bevelhash = hash.substring(8, 9);
+				// var texthash = hash.substring(10);
+				// hex = colorhash;
+				// pointLight.color.setHex(parseInt(colorhash, 16));
+				// fontName = reverseFontMap[parseInt(fonthash)];
+				// fontWeight = reverseWeightMap[parseInt(weighthash)];
+				// bevelEnabled = parseInt(bevelhash);
 				// text = decodeURI( texthash );
 				text = "";
 			} else {
@@ -243,7 +247,8 @@
 				new THREE.PlaneBufferGeometry(10000, 10000),
 				new THREE.MeshBasicMaterial({
 					color: 0xffffff,
-					opacity: 0.5,
+					// opacity: 0.5,
+					opacity: 0, //투명도
 					transparent: true
 				})
 			);
@@ -257,13 +262,15 @@
 			});
 			renderer.setPixelRatio(window.devicePixelRatio);
 			renderer.setSize(window.innerWidth / 3, window.innerHeight / 3); //original size
+			// renderer.setSize(1920, 1080); //original size
 			container.appendChild(renderer.domElement);
 
 			// STATS
 			stats = new Stats();
 			document.getElementById("buttonRed").addEventListener('click', function() {
-				pointLight.color.setRGB(255, 0, 0);
-				hex = decimalToHex(pointLight.color.getHex());
+				pointLight.color.setHex(0xff0000);
+				// hex = decimalToHex(pointLight.color.getHex());
+				console.log(pointLight.color + "Red");
 			}, false);
 
 			// document.getElementById("buttonOrange").addEventListener('click', function() {
@@ -272,8 +279,12 @@
 			// }, false);
 
 			document.getElementById("buttonYellow").addEventListener('click', function() {
-				pointLight.color.setRGB(255, 255, 0);
-				hex = decimalToHex(pointLight.color.getHex());
+				pointLight.color.setHex(0xffff00);
+				// hex = decimalToHex(pointLight.color.getHex());
+				// hex= "#ffff00";
+
+				// console.log(pointLight.color.setHSL(60, 1, 0.5));
+				console.log("Yellow")
 			}, false);
 
 			// document.getElementById("buttonGreenyellow").addEventListener('click', function() {
@@ -282,18 +293,21 @@
 			// }, false);
 
 			document.getElementById("buttonGreen").addEventListener('click', function() {
-				pointLight.color.setRGB(0, 255, 0);
-				hex = decimalToHex(pointLight.color.getHex());
+				// pointLight.color.setHSL(120, 1, 0.5);
+				pointLight.color.setHex(0x00ff00);
+				// hex = decimalToHex(pointLight.color.getHex());
 			}, false);
 
 			document.getElementById("buttonAqua").addEventListener('click', function() {
-				pointLight.color.setRGB(0, 255, 255);
-				hex = decimalToHex(pointLight.color.getHex());
+				// pointLight.color.setRGB(0, 255, 255);
+				pointLight.color.setHex(0x00ffff);
+				// hex = decimalToHex(pointLight.color.getHex());
 			}, false);
 
 			document.getElementById("buttonBlue").addEventListener('click', function() {
-				pointLight.color.setRGB(0, 0, 255);
-				hex = decimalToHex(pointLight.color.getHex());
+				// pointLight.color.setRGB(0, 0, 255);
+				// hex = decimalToHex(pointLight.color.getHex());
+				pointLight.color.setHex(0x0000ff);
 			}, false);
 
 			// document.getElementById("buttonPurple").addEventListener('click', function() {
@@ -307,8 +321,9 @@
 			// }, false);
 
 			document.getElementById("buttonGray").addEventListener('click', function() {
-				pointLight.color.setRGB(128,128,128);
-				hex = decimalToHex(pointLight.color.getHex());
+				// pointLight.color.setRGB(128,128,128);
+				// hex = decimalToHex(pointLight.color.getHex());
+				pointLight.color.setHex(0x808080);
 			}, false);
 
 
@@ -323,6 +338,7 @@
 			// 		fontWeight = "Regular";
 			// 	} else {
 			// 		fontWeight = "Bold";
+
 			// 	}
 			// 	loadFont();
 			// }, false);
@@ -433,10 +449,12 @@
 			textGeo = new THREE.BufferGeometry().fromGeometry(textGeo);
 			textMesh1 = new THREE.Mesh(textGeo, materials);
 			textMesh1.position.x = centerOffset;
-			textMesh1.position.y = hover;
+			//textMesh1.position.y = hover; //hover = 30
+			textMesh1.position.y = 0; //hover
 			textMesh1.position.z = 0;
 			textMesh1.rotation.x = 0;
-			textMesh1.rotation.y = Math.PI * 2;
+			// textMesh1.rotation.y = Math.PI * 2;
+			textMesh1.rotation.y = 0;
 			group.add(textMesh1);
 
 			// if ( mirror ) {
@@ -520,13 +538,13 @@
 			isStoppedRecording = true;
 			recorder.stopRecording(function(url) {
 				var blob = recorder.getBlob();
-				console.log('blob', blob);
+				// console.log('blob', blob);
 
 				var video = document.createElement('video');
 				video.src = URL.createObjectURL(blob);
 				video.setAttribute('style', 'height: 100%; position: absolute; top:0;');
 				var body = document.querySelector('body');
-				body.innerHTML = 'result';
+				// body.innerHTML = 'result';
 				body.appendChild(video);
 				video.controls = true;
 				video.play();
