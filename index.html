@@ -2,534 +2,101 @@
 <html lang="kr">
 
 <head>
-	<title>SSG EDITOR</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<title>SSG TITLER</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<style>
-	.myCanvas {
-	  position: absolute;
-		top: 0;
-	}
-	.left-box {
-	  position: absolute;
-    bottom: 0;
-	}
-	</style>
 </head>
 
-<body bgcolor="gray">
+<body bgcolor=#1e242e>
 
-	<!-- <div class="right" style="float:left;width:60%;"> -->
-<div class='left-box'>
-		<p style="color:white; font-size:50px; font-weight:bold;">
-			SSG TITLER
-		</p>
+	<div class="square"></div>
+	<div id="myCanvas" class='myCanvas'></div>
+	<svg class="circle" height="520" width="520">
+		<ellipse cx="260" cy="260" rx="255" ry="255" style="fill:none;stroke:#5f6160;stroke-width:2" />
+	</svg>
+
+	<div class='title-box'>
+		<font face="arial">
+			<p style="color:white; font-size:30px;">
+				SSG TITLER</p>
+	</div>
+
+	<hr class='line' style="border:1px solid#5f6160;" width=530px>
+
+	<div class="textInput-board">
+		<p style="font-size:20px;">
+			<font color="#9dadcf">
+				TEXT<br>
+				<input type="text" class="textInput" id="textInput" size=12 style="line-height: 25px;font-size:12px;padding:3px">
+	</div>
+
+	<p>
+		<div class="textInput-button">
+			<button class="input" onclick="myText()">INPUT</button>
+		</div>
+
 		<p>
-			TEXT
-			<input type="text" id="textInput" value="" size=12 style="line-height: 25px;font-size:18px;padding:3px">
-			<button onclick="myText()" style="color:white; background:#000080; font-size:18px; line-height: 25px; padding:3px 30px">입력</button>
 			<p>
 				<p>
 					<p>
-						<p>
+
+						<div class="text-control">
+							<p style="font-size:20px;">
+								FONT &nbsp;&nbsp;&nbsp;&nbsp;<br>
+								<button class="fontOne" onclick="fontOne()">1</button>&nbsp;&nbsp;
+								<button class="fontOne" onclick="fontTwo()">2</button>&nbsp;&nbsp;
+								<button class="fontOne" onclick="fontThree()">3</button>
+
+								<p style="font-size:20px;">
+									BOLD &nbsp;&nbsp;&nbsp;&nbsp;<br>
+									<button class="fontOne" onclick="textRegular()">1</button>&nbsp;&nbsp;
+									<button class="fontOne" onclick="textBold()">2</button>
+						</div>
+						<div class="text-control2">
+							<p style="font-size:20px;">
+								COLOR &nbsp;&nbsp;&nbsp;&nbsp;<br>
+								<button class="colorButton" id="buttonRed" style="color:red;background:red" size="3">1</button>&nbsp;
+								<button class="colorButton" id="buttonYellow" style="color:#ffde6c;background:#ffde6c" size="3">3</button>&nbsp;
+								<button class="colorButton" id="buttonGreen" style="color:green;background:green" size="3">5</button>&nbsp;
+								<button class="colorButton" id="buttonAqua" style="color:aqua;background:aqua" size="3">6</button>&nbsp;
+								<button class="colorButton" id="buttonBlue" style="color:#5d8bff;background:#5d8bff" size="3">7</button>&nbsp;
+								<button class="colorButton" id="buttonViolet" style="color:violet;background:violet" size="3">8</button>&nbsp;
+								<button class="colorButton" id="buttonGray" style="color:gray;background:gray" size="3">0</button>
+							</div>
+							<div class="text-control3">
+								<p style="font-size:20px;">
+
+									ACTION &nbsp;&nbsp;&nbsp;&nbsp; <br>
+									<button class="fontOne" onclick="renderZero()">1</button>&nbsp;&nbsp;
+									<button class="fontOne" onclick="renderY()" id="rotY">2</button>&nbsp;&nbsp;
+									<button class="fontOne" onclick="renderX()">3</button>
+
+									<p style="font-size:20px;">
+										EFFECT &nbsp;&nbsp;&nbsp;&nbsp; <br>
+										<button class="fontOne" onclick="">1</button>&nbsp;&nbsp;
+										<button class="fontOne" onclick="">2</button>&nbsp;&nbsp;
+										<button class="fontOne" onclick="">3</button>
+
+						</div>
+						<div class="video-control">
 							<p>
-								● 서체&nbsp;&nbsp;&nbsp;&nbsp;
-								<button onclick="fontOne()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="1">1</button>
-								<button onclick="fontTwo()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="2">2</button>
-								<button onclick="fontThree()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
-
 								<p>
-									● 굵기&nbsp;&nbsp;&nbsp;&nbsp;
-									<button onclick="textRegular()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
-									<button onclick="textBold()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
-									<!-- <button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button> -->
+									<button class="videoButton" id='startRecording'>SAVE</button>&nbsp;&nbsp;&nbsp;
+									<button class="videoButton" id='stopRecording'>DONE</button>
+									</font>
+						</div>
+
+						<script src="js/RecordRTC.js"></script>
+						<script src="js/screenshot.js"></script>
+						<script src="build/three.js"></script>
+						<script src="js/GeometryUtils.js"></script>
+						<script src="js/WebGL.js"></script>
+						<script src="js/stats.min.js"></script>
+
+						<script src="text.js"></script>
+						<script src="record.js"></script>
 
-									<!-- <p>
-										● 시선&nbsp;&nbsp;&nbsp;&nbsp;
-										<button id="textX" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
-										<button id="textY" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
-										<button id="textZ" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button> -->
-
-										<p>
-											● 칼라&nbsp;&nbsp;&nbsp;&nbsp;
-											<button id="buttonRed" style="line-height: 18px;font-size:18px;color:red;background:red" size="3">1</button>
-											<!-- <button id="buttonOrange" style="line-height: 18px;font-size:18px;color:Orange;background:Orange" size="3">1</button> -->
-
-											<!-- <button onclick="buttonRed()" style="line-height: 18px;font-size:18px;color:red;background:red" size="3">1</button> -->
-											<!-- <button onclick="buttonOrange()" style="line-height: 18px;font-size:18px;color:orange;background:orange" size="3">2</button> -->
-											<button id="buttonYellow" style="line-height: 18px;font-size:18px;color:yellow;background:yellow" size="3">3</button>
-											<!-- <button id="buttonGreenyellow" style="line-height: 18px;font-size:18px;color:greenyellow;background:greenyellow" size="3">4</button> -->
-											<button id="buttonGreen" style="line-height: 18px;font-size:18px;color:green;background:green" size="3">5</button>
-											<button id="buttonAqua" style="line-height: 18px;font-size:18px;color:aqua;background:aqua" size="3">6</button>
-											<button id="buttonBlue" style="line-height: 18px;font-size:18px;color:blue;background:blue" size="3">7</button>
-											<!-- <button id="buttonPurple" style="line-height: 18px;font-size:18px;color:purple;background:purple" size="3">8</button> -->
-											<!-- <button id="buttonBrown" style="line-height: 18px;font-size:18px;color:brown;background:brown" size="3">9</button> -->
-											<button id="buttonGray" style="line-height: 18px;font-size:18px;color:gray;background:gray" size="3">0</button>
-
-											<p>
-												● 액션&nbsp;&nbsp;&nbsp;&nbsp;
-												<button onclick="renderZero()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
-												<button onclick="renderY()" id="rotY" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
-												<button onclick="renderX()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
-												<!-- <button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">4</button>
-												<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">5</button>
-												<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">6</button> -->
-
-												<!-- <p>
-													● 이펙트
-													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
-													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
-													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
-													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">4</button> -->
-
-													<p>
-														<p>
-															<button id='startRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">저 장</button>
-															<button id='stopRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">마 침</button>
-															<!-- <button onclick="" style="line-height: 18px;font-size:18px; color: white;background:gray;padding:3px 30px" size="3">취 소</button>
-															<button onclick="" style="line-height: 18px;font-size:18px; color: white;background:gray;padding:5px 40px" size="3">확 인</button>
-															<p> -->
-
-																<!-- <span class="button" id="color">change color</span>,
-																<span class="button" id="font">change font</span>,
-																<span class="button" id="weight">change weight</span> -->
-																<!-- <span class="button" id="bevel">change bevel</span><p> -->
-	</div>
-
-
-	<script src="js/RecordRTC.js"></script>
-	<script src="js/screenshot.js"></script>
-	<script src="build/three.js"></script>
-	<script src="js/GeometryUtils.js"></script>
-	<script src="js/WebGL.js"></script>
-	<script src="js/stats.min.js"></script>
-
-	<!-- <div class='right-box'> -->
-
-	<script>
-		var canvas = document.getElementById("myCanvas");
-
-		if (WEBGL.isWebGLAvailable() === false) {
-			document.body.appendChild(WEBGL.getWebGLErrorMessage());
-		}
-		// myText();
-		THREE.Cache.enabled = true;
-		var container, stats, permalink, hex;
-		var camera, cameraTarget, scene, renderer;
-		var group, textMesh1, textMesh2, textGeo, materials;
-		var firstLetter = false;
-		var text = "",
-			height = 20,
-			size = 70,
-			hover = 30,
-			curveSegments = 4,
-			bevelThickness = 2,
-			bevelSize = 1.5,
-			bevelEnabled = true,
-			font = undefined,
-			fontName = "NanumMyeongjo", // helvetiker, optimer, gentilis, droid sans, droid serif
-			fontWeight = "Regular"; // normal bold
-		var rotationX = 0;
-		var rotationY = 0;
-
-    var colorH = 0;
-		var colorS = 0;
-		var colorL = 0;
-
-		var textX = 0;
-		var textY = 400;
-		var textZ = 700;
-
-		var mirror = true;
-		var fontMap = {
-			"NanumMyeongjo": 0,
-			"NanumGothic": 1,
-			"optimer": 2
-			// "gentilis": 2,
-			// "droid/droid_sans": 3,
-			// "droid/droid_serif": 4
-		};
-
-		var weightMap = {
-			"Regular": 0,
-			"Bold": 1
-		};
-		var reverseFontMap = [];
-		var reverseWeightMap = [];
-		for (var i in fontMap) reverseFontMap[fontMap[i]] = i;
-		for (var i in weightMap) reverseWeightMap[weightMap[i]] = i;
-		var targetRotation = 0;
-		var targetRotationOnMouseDown = 0;
-		var windowHalfX = window.innerWidth / 2;
-		var fontIndex = 1;
-		init();
-		animate();
-
-		function decimalToHex(d) {
-			var hex = Number(d).toString(16);
-			hex = "000000".substr(0, 6 - hex.length) + hex;
-			return hex.toUpperCase();
-		}
-
-		function init() {
-			container = document.createElement('div');
-			document.body.appendChild(container);
-
-			// CAMERA
-			camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500);
-			console.log(textX, textY, textZ);
-			camera.position.set(textX,textY, textZ);
-			cameraTarget = new THREE.Vector3(0, 150, 0);
-
-			// SCENE
-			scene = new THREE.Scene();
-			scene.background = new THREE.Color(0x000000);
-			scene.fog = new THREE.Fog(0x000000, 250, 1400);
-
-			// LIGHTS
-			var dirLight = new THREE.DirectionalLight(0xffffff, 0.125);
-			dirLight.position.set(0, 0, 1).normalize();
-			scene.add(dirLight);
-			var pointLight = new THREE.PointLight(0xffffff, 1.5);
-			pointLight.position.set(0, 100, 90);
-			scene.add(pointLight);
-
-			// Get text from hash
-			var hash = document.location.hash.substr(1);
-
-			if (hash.length !== 0) {
-				var colorhash = hash.substring(0, 6);
-				var fonthash = hash.substring(0, 2);
-				var weighthash = hash.substring(7, 8);
-				var bevelhash = hash.substring(8, 9);
-				var texthash = hash.substring(10);
-				hex = colorhash;
-				pointLight.color.setHex(parseInt(colorhash, 16));
-				fontName = reverseFontMap[parseInt(fonthash)];
-				fontWeight = reverseWeightMap[parseInt(weighthash)];
-				bevelEnabled = parseInt(bevelhash);
-				// text = decodeURI( texthash );
-				text = "";
-			} else {
-				pointLight.color.setHSL(Math.random(), 1, 0.5);
-				// pointLight.color.setHSL(colorH, colorS, colorL);
-				// console.log(colorH);
-				hex = decimalToHex(pointLight.color.getHex());
-			}
-
-			materials = [
-				new THREE.MeshPhongMaterial({
-					color: 0xffffff,
-					flatShading: true
-				}), // front
-				new THREE.MeshPhongMaterial({
-					color: 0xffffff
-				}) // side
-			];
-
-			group = new THREE.Group();
-			group.position.y = 100;
-
-			scene.add(group);
-
-			loadFont();
-
-			var plane = new THREE.Mesh(
-				new THREE.PlaneBufferGeometry(10000, 10000),
-				new THREE.MeshBasicMaterial({
-					color: 0xffffff,
-					opacity: 0.5,
-					transparent: true
-				})
-			);
-			plane.position.y = 100;
-			plane.rotation.x = -Math.PI / 2;
-			scene.add(plane);
-
-			// RENDERER
-			renderer = new THREE.WebGLRenderer({
-				antialias: true
-			});
-			renderer.setPixelRatio(window.devicePixelRatio);
-			renderer.setSize(window.innerWidth / 3, window.innerHeight / 3); //original size
-			container.appendChild(renderer.domElement);
-
-			// STATS
-			stats = new Stats();
-			document.getElementById("buttonRed").addEventListener('click', function() {
-				pointLight.color.setRGB(255, 0, 0);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
-
-			// document.getElementById("buttonOrange").addEventListener('click', function() {
-			// 	pointLight.color.setRGB(255, 165, 0);
-			// 	hex = decimalToHex(pointLight.color.getHex());
-			// }, false);
-
-			document.getElementById("buttonYellow").addEventListener('click', function() {
-				pointLight.color.setRGB(255, 255, 0);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
-
-			// document.getElementById("buttonGreenyellow").addEventListener('click', function() {
-			// 	pointLight.color.setRGB(173, 255, 47);
-			// 	hex = decimalToHex(pointLight.color.getHex());
-			// }, false);
-
-			document.getElementById("buttonGreen").addEventListener('click', function() {
-				pointLight.color.setRGB(0, 255, 0);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
-
-			document.getElementById("buttonAqua").addEventListener('click', function() {
-				pointLight.color.setRGB(0, 255, 255);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
-
-			document.getElementById("buttonBlue").addEventListener('click', function() {
-				pointLight.color.setRGB(0, 0, 255);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
-
-			// document.getElementById("buttonPurple").addEventListener('click', function() {
-			// 	pointLight.color.setRGB(238,130,238);
-			// 	hex = decimalToHex(pointLight.color.getHex());
-			// }, false);
-			//
-			// document.getElementById("buttonBrown").addEventListener('click', function() {
-			// 	pointLight.color.setRGB(165, 42, 42);
-			// 	hex = decimalToHex(pointLight.color.getHex());
-			// }, false);
-
-			document.getElementById("buttonGray").addEventListener('click', function() {
-				pointLight.color.setRGB(128,128,128);
-				hex = decimalToHex(pointLight.color.getHex());
-			}, false);
-
-
-			// document.getElementById("font").addEventListener('click', function() {
-			// 	fontIndex++;
-			// 	fontName = reverseFontMap[fontIndex % reverseFontMap.length];
-			// 	loadFont();
-			// }, false);
-			// document.getElementById("weight").addEventListener('click', function() {
-			//
-			// 	if (fontWeight === "Bold") {
-			// 		fontWeight = "Regular";
-			// 	} else {
-			// 		fontWeight = "Bold";
-			// 	}
-			// 	loadFont();
-			// }, false);
-
-			//soft
-			// document.getElementById( "bevel" ).addEventListener( 'click', function () {
-			// 	bevelEnabled = ! bevelEnabled;
-			// 	refreshText();
-			// }, false );
-			//soft
-
-			window.addEventListener('resize', onWindowResize, false);
-		}
-
-		function onWindowResize() {
-			windowHalfX = window.innerWidth / 2;
-			camera.aspect = window.innerWidth / window.innerHeight;
-			camera.updateProjectionMatrix();
-			renderer.setSize(window.innerWidth / 3, window.innerHeight / 3); //resizeing
-
-		}
-
-		function boolToNum(b) {
-			return b ? 1 : 0;
-		}
-
-		function myText() {
-			text = document.getElementById("textInput").value;
-			refreshText();
-		}
-
-		function fontOne() {
-			fontName = "NanumMyeongjo";
-			loadFont();
-			// refreshText();
-		}
-
-		function fontTwo() {
-			fontName = "NanumGothic";
-			loadFont();
-			refreshText();
-		}
-
-		function fontThree() {
-			fontName = "helvetiker";
-			loadFont();
-			// refreshText();
-		}
-
-		function textRegular() {
-			fontWeight = "Regular";
-			loadFont();
-			// refreshText();
-		}
-
-		function textBold() {
-			fontWeight = "Bold";
-			loadFont();
-			// refreshText();
-		}
-
-		function loadFont() {
-			var loader = new THREE.FontLoader();
-			loader.load('fonts/' + fontName + '_' + fontWeight + '.typeface.json', function(response) {
-				font = response;
-				refreshText();
-			});
-		}
-
-		function createText() {
-			textGeo = new THREE.TextGeometry(text, {
-				font: font,
-				size: size,
-				height: height,
-				curveSegments: curveSegments,
-
-				bevelThickness: bevelThickness,
-				bevelSize: bevelSize,
-				bevelEnabled: bevelEnabled
-			});
-			textGeo.computeBoundingBox();
-			textGeo.computeVertexNormals();
-
-			if (!bevelEnabled) {
-				var triangleAreaHeuristics = 0.1 * (height * size);
-				for (var i = 0; i < textGeo.faces.length; i++) {
-					var face = textGeo.faces[i];
-					if (face.materialIndex == 1) {
-						for (var j = 0; j < face.vertexNormals.length; j++) {
-							face.vertexNormals[j].z = 0;
-							face.vertexNormals[j].normalize();
-						}
-						var va = textGeo.vertices[face.a];
-						var vb = textGeo.vertices[face.b];
-						var vc = textGeo.vertices[face.c];
-						var s = THREE.GeometryUtils.triangleArea(va, vb, vc);
-
-						if (s > triangleAreaHeuristics) {
-							for (var j = 0; j < face.vertexNormals.length; j++) {
-								face.vertexNormals[j].copy(face.normal);
-							}
-						}
-					}
-				}
-			}
-
-			var centerOffset = -0.5 * (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x);
-			textGeo = new THREE.BufferGeometry().fromGeometry(textGeo);
-			textMesh1 = new THREE.Mesh(textGeo, materials);
-			textMesh1.position.x = centerOffset;
-			textMesh1.position.y = hover;
-			textMesh1.position.z = 0;
-			textMesh1.rotation.x = 0;
-			textMesh1.rotation.y = Math.PI * 2;
-			group.add(textMesh1);
-
-			// if ( mirror ) {
-			// 	textMesh2 = new THREE.Mesh( textGeo, materials );
-			// 	textMesh2.position.x = centerOffset;
-			// 	textMesh2.position.y = - hover;
-			// 	textMesh2.position.z = height;
-			// 	textMesh2.rotation.x = Math.PI;
-			// 	textMesh2.rotation.y = Math.PI * 2;
-			// 	group.add( textMesh2 );
-			// }
-		}
-
-		function refreshText() {
-			group.remove(textMesh1);
-			if (mirror) group.remove(textMesh2);
-			if (!text) return;
-			createText();
-		}
-
-		function animate() {
-			requestAnimationFrame(animate);
-			render();
-			// stats.update();
-		}
-
-		function render() {
-			// group.rotation.y += rotation; //회전속도
-			group.rotation.x += rotationX;
-			group.rotation.y += rotationY;
-
-			camera.lookAt(cameraTarget);
-			renderer.clear();
-			renderer.render(scene, camera);
-		}
-
-		function renderX() {
-			group.rotation.x = 0;
-			group.rotation.y = 0;
-			rotationX = 0.01;
-			rotationY = 0;
-		}
-
-		function renderY() {
-			group.rotation.x = 0;
-			group.rotation.y = 0;
-			rotationX = 0;
-			rotationY = 0.01;
-		}
-
-		function renderZero() {
-			group.rotation.x = 0;
-			group.rotation.y = 0;
-			rotationX = 0;
-			rotationY = 0;
-		}
-
-
-	</script>
-	<script type="text/javascript">
-		/* JAVASCRIPT CODE for video */
-		var elementToShare = document.querySelector('canvas');
-		var recorder = RecordRTC(elementToShare, {
-			type: 'canvas',
-			showMousePointer: true
-		});
-
-		document.getElementById('startRecording').onclick = function() {
-			this.disabled = true;
-
-			isRecordingStarted = true;
-			isStoppedRecording = false;
-			recorder.startRecording();
-
-			document.getElementById('stopRecording').disabled = false;
-		};
-
-		document.getElementById('stopRecording').onclick = function() {
-			this.disabled = true;
-
-			isStoppedRecording = true;
-			recorder.stopRecording(function(url) {
-				var blob = recorder.getBlob();
-				console.log('blob', blob);
-
-				var video = document.createElement('video');
-				video.src = URL.createObjectURL(blob);
-				video.setAttribute('style', 'height: 100%; position: absolute; top:0;');
-				var body = document.querySelector('body');
-				body.innerHTML = 'result';
-				body.appendChild(video);
-				video.controls = true;
-				video.play();
-			});
-		};
-	</script>
-	<!-- <button id='startRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">저 장</button>
-	<button id='stopRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">마 침</button> -->
 </body>
 
 </html>
