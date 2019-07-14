@@ -1,0 +1,96 @@
+
+.title-box {
+	position: absolute;
+	top: 0px;
+	float: left;
+}
+.line {
+	position: absolute;
+	top: 60px;
+	float: left;
+}
+.textInput-board{
+		position: absolute;
+		top: 70px;
+		float: left;
+	}
+	.textInput{
+		width: 235px;
+		height: 20px;
+		border: 0px;
+		border-radius: 30px;
+	}
+	.input{
+		width: 80px;
+		height: 25px;
+		border: 0px;
+		border-radius: 10px;
+    color:white;
+		background:#5b6b8d;
+		font-size:18px;
+	}
+	.textInput-button{
+		position: absolute;
+		top: 147px;
+		float: left;
+		left: 170px;
+	}
+	.text-control{
+		position: absolute;
+		top: 160px;
+		float: left;
+	}
+	.fontOne{
+		width: 70px;
+		height: 30px;
+		border: 0px;
+		border-radius: 10px;
+    color:white;
+		background:#5b6b8d;
+		font-size:20px;
+	}
+  .colorButton{
+		width: 25px;
+		height: 25px;
+		border: 0px;
+		border-radius: 5px;
+	}
+	.square{
+		position: absolute;
+		top: 85px;
+		left: 270px;
+		height: 520px;
+		width: 520px;
+		background-color: white;
+	}
+	.myCanvas {
+		position: absolute;
+    top: 85px;
+		left: 270px;
+		float: left;
+	}
+
+	.circle{
+		position: absolute;
+		top: 85px;
+		left: 270px;
+	}
+	.buttons{
+		position: absolute;
+		top: 40px;
+	}
+	.videoButton{
+		width: 100px;
+		height: 30px;
+		border: 0px;
+		border-radius: 10px;
+    color:white;
+		background:#6b3948;
+		font-size:20px;
+	}
+	.video-control{
+		position: absolute;
+		top: 565px;
+		float: left;
+		left: 37px;
+	}

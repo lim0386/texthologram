@@ -2,104 +2,99 @@
 <html lang="kr">
 
 <head>
-	<title>SSG EDITOR</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<title>SSG TITLER</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<!-- <style>
-	.left-box {
-		position: relative;
-	  float: left;
-	  width: 50%;
-	}
-	.myCanvas {
-		position: absolute;
-		/* height: 1920; */
-		width: 50%;
-	}
-	</style> -->
 </head>
 
-<body bgcolor="gray">
+<body bgcolor=#1e242e>
 
-<div class='left-box'>
-		<p style="color:white; font-size:50px; font-weight:bold;">
-			SSG TITLER
-		</p>
+	<div class="square"></div>
+	<div id="myCanvas" class='myCanvas'></div>
+	<svg class="circle" height="520" width="520">
+		<ellipse cx="260" cy="260" rx="255" ry="255" style="fill:none;stroke:#5f6160;stroke-width:2" />
+	</svg>
+
+	<div class='title-box'>
+		<font face="arial">
+			<p style="color:white; font-size:30px;">
+				SSG TITLER</p>
+	</div>
+
+	<hr class='line' style="border:1px solid#5f6160;" width=783px>
+
+
+	<div class="textInput-board">
+		<p style="font-size:20px;">
+			<font color="#9dadcf">
+				TEXT<br>
+				<input type="text" class="textInput" id="textInput" size=12 style="line-height: 25px;font-size:12px;padding:3px">
+	</div>
+
+	<p>
+		<div class="textInput-button">
+			<button class="input" onclick="myText()">INPUT</button>
+		</div>
+
 		<p>
-			TEXT
-			<input type="text" id="textInput" value="" size=12 style="line-height: 25px;font-size:18px;padding:3px">
-			<button onclick="myText()" style="color:white; background:#000080; font-size:18px; line-height: 25px; padding:3px 30px">입력</button>
 			<p>
 				<p>
 					<p>
-						<p>
+
+						<div class="text-control">
+							<p style="font-size:20px;">
+								FONT &nbsp;&nbsp;&nbsp;&nbsp;<br>
+								<button class="fontOne" onclick="fontOne()">1</button>&nbsp;&nbsp;
+								<button class="fontOne" onclick="fontTwo()">2</button>&nbsp;&nbsp;
+								<button class="fontOne" onclick="fontThree()">3</button>
+
+								<p style="font-size:20px;">
+									BOLD &nbsp;&nbsp;&nbsp;&nbsp;<br>
+									<button class="fontOne" onclick="textRegular()">1</button>&nbsp;&nbsp;
+									<button class="fontOne" onclick="textBold()">2</button>
+
+									<p style="font-size:20px;">
+										COLOR &nbsp;&nbsp;&nbsp;&nbsp;<br>
+										<button class="colorButton" id="buttonRed" style="color:red;background:red" size="3">1</button>&nbsp;
+										<button class="colorButton" id="buttonYellow" style="color:#ffde6c;background:#ffde6c" size="3">3</button>&nbsp;
+										<button class="colorButton" id="buttonGreen" style="color:green;background:green" size="3">5</button>&nbsp;
+										<button class="colorButton" id="buttonAqua" style="color:aqua;background:aqua" size="3">6</button>&nbsp;
+										<button class="colorButton" id="buttonBlue" style="color:#5d8bff;background:#5d8bff" size="3">7</button>&nbsp;
+										<button class="colorButton" id="buttonViolet" style="color:violet;background:violet" size="3">8</button>&nbsp;
+										<button class="colorButton" id="buttonGray" style="color:gray;background:gray" size="3">0</button>
+
+										<p style="font-size:20px;">
+
+											ACTION &nbsp;&nbsp;&nbsp;&nbsp; <br>
+											<button class="fontOne" onclick="renderZero()">1</button>&nbsp;&nbsp;
+											<button class="fontOne" onclick="renderY()" id="rotY">2</button>&nbsp;&nbsp;
+											<button class="fontOne" onclick="renderX()">3</button>
+
+											<p style="font-size:20px;">
+												EFFECT &nbsp;&nbsp;&nbsp;&nbsp; <br>
+												<button class="fontOne" onclick="">1</button>&nbsp;&nbsp;
+												<button class="fontOne" onclick="">2</button>&nbsp;&nbsp;
+												<button class="fontOne" onclick="">3</button>
+
+						</div>
+						<div class="video-control">
 							<p>
-								● 서체&nbsp;&nbsp;&nbsp;&nbsp;
-								<button onclick="fontOne()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="1">1</button>
-								<button onclick="fontTwo()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="2">2</button>
-								<button onclick="fontThree()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
-
 								<p>
-									● 굵기&nbsp;&nbsp;&nbsp;&nbsp;
-									<button onclick="textRegular()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
-									<button onclick="textBold()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
-									<!-- <button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button> -->
+									<button class="videoButton" id='startRecording'>SAVE</button>&nbsp;&nbsp;&nbsp;
+									<button class="videoButton" id='stopRecording'>DONE</button>
+									</font>
+						</div>
 
-									<!-- <p>
-										● 시선&nbsp;&nbsp;&nbsp;&nbsp;
-										<button id="textX" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
-										<button id="textY" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
-										<button id="textZ" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button> -->
+						<script src="js/RecordRTC.js"></script>
+						<script src="js/screenshot.js"></script>
+						<script src="build/three.js"></script>
+						<script src="js/GeometryUtils.js"></script>
+						<script src="js/WebGL.js"></script>
+						<script src="js/stats.min.js"></script>
 
-										<p>
-											● 칼라&nbsp;&nbsp;&nbsp;&nbsp;
-											<button id="buttonRed" style="line-height: 18px;font-size:18px;color:red;background:red" size="3">1</button>
-											<!-- <button id="buttonOrange" style="line-height: 18px;font-size:18px;color:Orange;background:Orange" size="3">1</button> -->
-
-											<!-- <button onclick="buttonRed()" style="line-height: 18px;font-size:18px;color:red;background:red" size="3">1</button> -->
-											<!-- <button onclick="buttonOrange()" style="line-height: 18px;font-size:18px;color:orange;background:orange" size="3">2</button> -->
-											<button id="buttonYellow" style="line-height: 18px;font-size:18px;color:yellow;background:yellow" size="3">3</button>
-											<!-- <button id="buttonGreenyellow" style="line-height: 18px;font-size:18px;color:greenyellow;background:greenyellow" size="3">4</button> -->
-											<button id="buttonGreen" style="line-height: 18px;font-size:18px;color:green;background:green" size="3">5</button>
-											<button id="buttonAqua" style="line-height: 18px;font-size:18px;color:aqua;background:aqua" size="3">6</button>
-											<button id="buttonBlue" style="line-height: 18px;font-size:18px;color:blue;background:blue" size="3">7</button>
-											<!-- <button id="buttonPurple" style="line-height: 18px;font-size:18px;color:purple;background:purple" size="3">8</button> -->
-											<!-- <button id="buttonBrown" style="line-height: 18px;font-size:18px;color:brown;background:brown" size="3">9</button> -->
-											<button id="buttonGray" style="line-height: 18px;font-size:18px;color:gray;background:gray" size="3">0</button>
-
-											<p>
-												● 액션&nbsp;&nbsp;&nbsp;&nbsp;
-												<button onclick="renderZero()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
-												<button onclick="renderY()" id="rotY" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
-												<button onclick="renderX()" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
-												<!-- <button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">4</button>
-												<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">5</button>
-												<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">6</button> -->
-
-												<!-- <p>
-													● 이펙트
-													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">1</button>
-													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">2</button>
-													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">3</button>
-													<button onclick="" style="color:white; background:dimgray; line-height: 18px;font-size:18px" size="3">4</button> -->
-
-													<p>
-														<p>
-															<button id='startRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">저 장</button>
-															<button id='stopRecording' style="line-height: 18px;font-size:18px; color: white;background:red;padding:8px 60px" size="3">마 침</button>
-
-	</div>
-
-	<script src="js/RecordRTC.js"></script>
-	<script src="js/screenshot.js"></script>
-	<script src="build/three.js"></script>
-	<script src="js/GeometryUtils.js"></script>
-	<script src="js/WebGL.js"></script>
-	<script src="js/stats.min.js"></script>
-
-	<script src="text.js"></script>
-
-	<script src="record.js"></script>
+						<script src="text.js"></script>
+						<script src="record.js"></script>
 
 </body>
 
