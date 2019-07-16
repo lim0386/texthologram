@@ -9,15 +9,18 @@
 </head>
 
 <body bgcolor=#1e242e>
-  <div id="start" class="square">
-	<div class="square"></div>
-	<video src="video/01.mp4" preload id="effect1" class="effect" width="520" controls></video>
-  <video src="video/02.mp4" preload id="effect2" class="effect" width="520" controls hidden=true></video>
-	<div id="myCanvas" class='myCanvas'></div>
-</div>
+	<div id="start">
+		<div class="square"></div>
+		<video src="video/01.mp4" preload id="effect1" class="effect" width="520" controls></video>
+		<video src="video/02.mp4" preload id="effect2" class="effect" width="520" controls></video>
+		<video src="video/03.mp4" preload id="effect3" class="effect" width="520" controls></video>
+		<div id="myCanvas" class='myCanvas'></div>
+	</div>
 	<svg class="circle" height="520" width="520">
 		<ellipse cx="260" cy="260" rx="255" ry="255" style="fill:none;stroke:#5f6160;stroke-width:2" />
 	</svg>
+
+	<canvas id="background-canvas"></canvas>
 
 	<div class='title-box'>
 		<font face="arial">
@@ -58,40 +61,40 @@
 									<button class="fontOne" onclick="textBold()">2</button>
 									<p>
 
-									THICKNESS<br>
-									<input type="range" step="0.1" min="0.1" max="10" value="2" class="slider" id="myThick"><br>
-									SIZE<br>
-									<input type="range" step="1" min="20" max="200" value="70" class="slider" id="mySize">
-
-									<p style="font-size:20px;">
-										COLOR &nbsp;&nbsp;&nbsp;&nbsp;<br>
-										<button class="colorButton" id="buttonRed" style="color:red;background:red" size="3">1</button>&nbsp;
-										<button class="colorButton" id="buttonYellow" style="color:#ffde6c;background:#ffde6c" size="3">3</button>&nbsp;
-										<button class="colorButton" id="buttonGreen" style="color:green;background:green" size="3">5</button>&nbsp;
-										<button class="colorButton" id="buttonAqua" style="color:aqua;background:aqua" size="3">6</button>&nbsp;
-										<button class="colorButton" id="buttonBlue" style="color:#5d8bff;background:#5d8bff" size="3">7</button>&nbsp;
-										<button class="colorButton" id="buttonViolet" style="color:violet;background:violet" size="3">8</button>&nbsp;
-										<button class="colorButton" id="buttonGray" style="color:gray;background:gray" size="3">0</button>
+										THICKNESS<br>
+										<input type="range" step="0.1" min="0.1" max="10" value="2" class="slider" id="myThick"><br>
+										SIZE<br>
+										<input type="range" step="1" min="20" max="200" value="70" class="slider" id="mySize">
 
 										<p style="font-size:20px;">
-
-											ACTION &nbsp;&nbsp;&nbsp;&nbsp; <br>
-											<button class="fontOne" onclick="renderZero()">1</button>&nbsp;&nbsp;
-											<button class="fontOne" onclick="renderY()" id="rotY">2</button>&nbsp;&nbsp;
-											<button class="fontOne" onclick="renderX()">3</button>
+											COLOR &nbsp;&nbsp;&nbsp;&nbsp;<br>
+											<button class="colorButton" id="buttonRed" style="color:red;background:red" size="3">1</button>&nbsp;
+											<button class="colorButton" id="buttonYellow" style="color:#ffde6c;background:#ffde6c" size="3">3</button>&nbsp;
+											<button class="colorButton" id="buttonGreen" style="color:green;background:green" size="3">5</button>&nbsp;
+											<button class="colorButton" id="buttonAqua" style="color:aqua;background:aqua" size="3">6</button>&nbsp;
+											<button class="colorButton" id="buttonBlue" style="color:#5d8bff;background:#5d8bff" size="3">7</button>&nbsp;
+											<button class="colorButton" id="buttonViolet" style="color:violet;background:violet" size="3">8</button>&nbsp;
+											<button class="colorButton" id="buttonGray" style="color:gray;background:gray" size="3">0</button>
 
 											<p style="font-size:20px;">
-												EFFECT &nbsp;&nbsp;&nbsp;&nbsp; <br>
-												<button class="fontOne" onclick="effectOne()">1</button>&nbsp;&nbsp;
-												<button class="fontOne" onclick="effectTwo()">2</button>&nbsp;&nbsp;
-												<button class="fontOne" onclick="effectThree()">3</button>
-                        <p>
+
+												ACTION &nbsp;&nbsp;&nbsp;&nbsp; <br>
+												<button class="fontOne" onclick="renderZero()">1</button>&nbsp;&nbsp;
+												<button class="fontOne" onclick="renderY()" id="rotY">2</button>&nbsp;&nbsp;
+												<button class="fontOne" onclick="renderX()">3</button>
+
+												<p style="font-size:20px;">
+													EFFECT &nbsp;&nbsp;&nbsp;&nbsp; <br>
+													<button class="fontOne" onclick="effectOne()">1</button>&nbsp;&nbsp;
+													<button class="fontOne" onclick="effectTwo()">2</button>&nbsp;&nbsp;
+													<button class="fontOne" onclick="effectThree()">3</button>
+													<p>
 
 						</div>
 						<div class="video-control">
-									<button class="videoButton" id='startRecording'>SAVE</button>&nbsp;&nbsp;&nbsp;
-									<button class="videoButton" id='stopRecording'>DONE</button>
-									</font>
+							<button class="videoButton" id='startRecording'>SAVE</button>&nbsp;&nbsp;&nbsp;
+							<button class="videoButton" id='stopRecording'>DONE</button>
+							</font>
 						</div>
 
 						<script src="js/RecordRTC.js"></script>
@@ -103,6 +106,9 @@
 
 						<script src="text.js"></script>
 						<script src="record.js"></script>
+						<!-- <script src="recording.js"></script> -->
+						<script src="https://www.webrtc-experiment.com/html2canvas.min.js"></script>
+
 </body>
 
 </html>

@@ -60,6 +60,9 @@ init();
 buttons();
 animate();
 // buttons();
+document.getElementById("effect1").hidden = true;
+document.getElementById("effect2").hidden = true;
+document.getElementById("effect3").hidden = true;
 
 function decimalToHex(d) {
   var hex = Number(d).toString(16);
@@ -71,23 +74,23 @@ function init() {
   const container = document.createElement('div');
   document.getElementById("myCanvas").appendChild(container);
 
-  video01 = document.getElementById("effect1");
-  video02 = document.getElementById("effect2");
-  video01.loop = true
-  var playPromise = video01.play();
-
-  if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Automatic playback started!
-      // Show playing UI.
-      console.log("NONE");
-    })
-    .catch(error => {
-      // Auto-play was prevented
-      // Show paused UI.
-      console.log("error");
-    });
-  }
+  // video01 = document.getElementById("effect1");
+  // video02 = document.getElementById("effect2");
+  // video01.loop = true
+  // var playPromise = video01.play();
+  //
+  // if (playPromise !== undefined) {
+  //   playPromise.then(_ => {
+  //     // Automatic playback started!
+  //     // Show playing UI.
+  //     console.log("NONE");
+  //   })
+  //   .catch(error => {
+  //     // Auto-play was prevented
+  //     // Show paused UI.
+  //     console.log("error");
+  //   });
+  // }
   // CAMERA
 	camera = new THREE.PerspectiveCamera(30, 522 / 522, 2, 1500);
   camera.position.set(textX, textY, textZ);
@@ -343,16 +346,73 @@ function renderZero() {
 }
 
 function effectOne() {
+  document.getElementById("effect1").hidden = true;
+  document.getElementById("effect2").hidden = true;
+  document.getElementById("effect3").hidden = false;
+  video03 = document.getElementById("effect3");
+  video03.loop = true
+  video03.currentTime = 0;
+  var playPromise = video03.play();
 
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Automatic playback started!
+      // Show playing UI.
+      console.log("NONE");
+    })
+    .catch(error => {
+      // Auto-play was prevented
+      // Show paused UI.
+      console.log("error");
+    });
+  }
   refreshText();
 }
 
 function effectTwo() {
-  // video01.play();
+  document.getElementById("effect2").hidden = true;
+  document.getElementById("effect1").hidden = false;
+  document.getElementById("effect3").hidden = true;
+  video02 = document.getElementById("effect1");
+  video02.loop = true
+  video02.currentTime = 0;
+  var playPromise = video02.play();
+
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Automatic playback started!
+      // Show playing UI.
+      console.log("NONE");
+    })
+    .catch(error => {
+      // Auto-play was prevented
+      // Show paused UI.
+      console.log("error");
+    });
+  }
   refreshText();
 }
 
 function effectThree() {
+  document.getElementById("effect1").hidden = true;
+  document.getElementById("effect2").hidden = false;
+  document.getElementById("effect3").hidden = true;
+  video02 = document.getElementById("effect2");
+  video02.loop = true
+  video02.currentTime = 0;
+  var playPromise = video02.play();
 
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Automatic playback started!
+      // Show playing UI.
+      console.log("NONE");
+    })
+    .catch(error => {
+      // Auto-play was prevented
+      // Show paused UI.
+      console.log("error");
+    });
+  }
   refreshText();
 }
