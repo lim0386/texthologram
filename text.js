@@ -1,8 +1,13 @@
 // var canvas = document.getElementById("myCanvas");
+// var myVideo = document.getElementById ("myVideo");
 
-if (WEBGL.isWebGLAvailable() === false) {
-  document.body.appendChild(WEBGL.getWebGLErrorMessage());
-}
+// if (WEBGL.isWebGLAvailable() === false) {
+//   document.body.appendChild(WEBGL.getWebGLErrorMessage());
+// }
+// var original = document.getElementById('start');
+// var clone = original.cloneNode(true);
+// clone.id = "start" + 1;
+// original.parentNode.appendChild(clone);
 
 THREE.Cache.enabled = true;
 var pointLight; //color of text
@@ -27,7 +32,9 @@ var rotationY = 0;
 
 var textX = 0;
 var textY = 400;
-var textZ = 1400;
+var textZ = 700;
+
+var video01, video02;
 
 var mirror = true;
 var fontMap = {
@@ -62,17 +69,29 @@ function decimalToHex(d) {
 
 function init() {
   const container = document.createElement('div');
-  // const videoTest = document.querySelector('video');
-  // const stream = container.captureStream();
-  // videoTest.srcObject = stream;
-  // document.body.appendChild(container);
   document.getElementById("myCanvas").appendChild(container);
-  // document.getElementById("myCanvas2").appendChild(container);
 
+  video01 = document.getElementById("effect1");
+  video02 = document.getElementById("effect2");
+  video01.loop = true
+  var playPromise = video01.play();
+
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Automatic playback started!
+      // Show playing UI.
+      console.log("NONE");
+    })
+    .catch(error => {
+      // Auto-play was prevented
+      // Show paused UI.
+      console.log("error");
+    });
+  }
   // CAMERA
-	camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500);
+	camera = new THREE.PerspectiveCamera(30, 522 / 522, 2, 1500);
   camera.position.set(textX, textY, textZ);
-  cameraTarget = new THREE.Vector3(0, 150, 0);
+  cameraTarget = new THREE.Vector3(0, 104, 0);
 
   // SCENE
   scene = new THREE.Scene();
@@ -90,7 +109,7 @@ function init() {
   var hash = document.location.hash.substr(1);
 
   if (hash.length == 0) {
-    pointLight.color.setHSL(Math.random(), 1, 0.5);
+    pointLight.color.setHex(0xff0000);
     hex = decimalToHex(pointLight.color.getHex());
   }
 
@@ -125,12 +144,12 @@ function init() {
 
   // RENDERER
   renderer = new THREE.WebGLRenderer({
-    antialias: true
+    // antialias: true
+    alpha: true
   });
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(525, 525); //original size
+  renderer.setSize(522, 522); //original size
   container.appendChild(renderer.domElement);
-
   // STATS
   stats = new Stats();
 }
@@ -164,6 +183,17 @@ function buttons() {
 
   document.getElementById("buttonGray").addEventListener('click', function() {
     pointLight.color.setHex(0x808080);
+  }, false);
+
+  document.getElementById("mySize").addEventListener('click', function() {
+    console.log(document.getElementById("mySize").value);
+    size = document.getElementById("mySize").value;
+    refreshText();
+  }, false);
+  document.getElementById("myThick").addEventListener('click', function() {
+    bevelThickness = document.getElementById("myThick").value;
+    console.log(document.getElementById("myThick").value);
+    refreshText();
   }, false);
 }
 
@@ -251,7 +281,7 @@ function createText() {
   textMesh1 = new THREE.Mesh(textGeo, materials);
   textMesh1.position.x = centerOffset;
   //textMesh1.position.y = hover; //hover = 30
-  textMesh1.position.y = 0; //hover
+  textMesh1.position.y = -20; //hover
   textMesh1.position.z = 0;
   textMesh1.rotation.x = 0;
   // textMesh1.rotation.y = Math.PI * 2;
@@ -309,5 +339,20 @@ function renderZero() {
   group.rotation.x = 0;
   group.rotation.y = 0;
   rotationX = 0;
-  rotationY = 0;
+  rotationY = -0.01;
+}
+
+function effectOne() {
+
+  refreshText();
+}
+
+function effectTwo() {
+  // video01.play();
+  refreshText();
+}
+
+function effectThree() {
+
+  refreshText();
 }

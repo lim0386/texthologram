@@ -9,9 +9,12 @@
 </head>
 
 <body bgcolor=#1e242e>
-
+  <div id="start" class="square">
 	<div class="square"></div>
+	<video src="video/01.mp4" preload id="effect1" class="effect" width="520" controls></video>
+  <video src="video/02.mp4" preload id="effect2" class="effect" width="520" controls hidden=true></video>
 	<div id="myCanvas" class='myCanvas'></div>
+</div>
 	<svg class="circle" height="520" width="520">
 		<ellipse cx="260" cy="260" rx="255" ry="255" style="fill:none;stroke:#5f6160;stroke-width:2" />
 	</svg>
@@ -53,6 +56,12 @@
 									BOLD &nbsp;&nbsp;&nbsp;&nbsp;<br>
 									<button class="fontOne" onclick="textRegular()">1</button>&nbsp;&nbsp;
 									<button class="fontOne" onclick="textBold()">2</button>
+									<p>
+
+									THICKNESS<br>
+									<input type="range" step="0.1" min="0.1" max="10" value="2" class="slider" id="myThick"><br>
+									SIZE<br>
+									<input type="range" step="1" min="20" max="200" value="70" class="slider" id="mySize">
 
 									<p style="font-size:20px;">
 										COLOR &nbsp;&nbsp;&nbsp;&nbsp;<br>
@@ -73,14 +82,13 @@
 
 											<p style="font-size:20px;">
 												EFFECT &nbsp;&nbsp;&nbsp;&nbsp; <br>
-												<button class="fontOne" onclick="">1</button>&nbsp;&nbsp;
-												<button class="fontOne" onclick="">2</button>&nbsp;&nbsp;
-												<button class="fontOne" onclick="">3</button>
+												<button class="fontOne" onclick="effectOne()">1</button>&nbsp;&nbsp;
+												<button class="fontOne" onclick="effectTwo()">2</button>&nbsp;&nbsp;
+												<button class="fontOne" onclick="effectThree()">3</button>
+                        <p>
 
 						</div>
 						<div class="video-control">
-							<p>
-								<p>
 									<button class="videoButton" id='startRecording'>SAVE</button>&nbsp;&nbsp;&nbsp;
 									<button class="videoButton" id='stopRecording'>DONE</button>
 									</font>
@@ -95,7 +103,6 @@
 
 						<script src="text.js"></script>
 						<script src="record.js"></script>
-
 </body>
 
 </html>

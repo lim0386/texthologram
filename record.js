@@ -24,7 +24,7 @@
 		    // console.log('blob', blob);
 		    var video = document.createElement('video');
 		    video.src = URL.createObjectURL(blob);
-		    video.setAttribute('style', 'position: absolute; width:520px; height:520px%; top:85px; left:270px');
+		    video.setAttribute('style', 'position: absolute; width:520px; height:520px%; top:130px; left:270px');
 		    var body = document.querySelector('body');
 
 		    body.appendChild(video);

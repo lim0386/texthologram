@@ -37,7 +37,7 @@
 	}
 	.text-control{
 		position: absolute;
-		top: 160px;
+		top: 170px;
 		float: left;
 	}
 	.fontOne{
@@ -55,9 +55,15 @@
 		border: 0px;
 		border-radius: 5px;
 	}
+	.effect {
+		position: absolute;
+		top: 130px;
+		left: 270px;
+		float: left;
+	}
 	.square{
 		position: absolute;
-		top: 85px;
+		top: 130px;
 		left: 270px;
 		height: 520px;
 		width: 520px;
@@ -65,14 +71,26 @@
 	}
 	.myCanvas {
 		position: absolute;
-    top: 85px;
+    top: 130px;
+		left: 270px;
+		float: left;
+	}
+	/* .myCanvas2 {
+		position: absolute;
+    top: 130px;
+		left: 270px;
+		float: left;
+	} */
+	.effect {
+		position: absolute;
+		top: 130px;
 		left: 270px;
 		float: left;
 	}
 
 	.circle{
 		position: absolute;
-		top: 85px;
+		top: 130px;
 		left: 270px;
 	}
 	.buttons{
@@ -90,7 +108,22 @@
 	}
 	.video-control{
 		position: absolute;
-		top: 565px;
+		top: 670px;
 		float: left;
 		left: 37px;
+	}
+	.slider{
+		-webkit-appearance: none;
+	height: 30px;
+	width: 240px;
+  background: #5b6b8d;
+  outline: none;
+  opacity: 0.7;
+	cursor: pointer;
+	}
+	.slider::-webkit-slider-thumb {
+	  -webkit-appearance: none;
+	  width: 30px;
+	  height: 30px;
+		background: #d3d3d3;
 	}
