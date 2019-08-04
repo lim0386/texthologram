@@ -1,6 +1,8 @@
 		/* JAVASCRIPT CODE for video */
 		// var elementToShare = document.querySelector('#effect1');
+
 		var elementToShare = document.querySelector('canvas');
+
 		var recorder = RecordRTC(elementToShare, {
 		  type: 'canvas',
 		});
