@@ -11,9 +11,11 @@
 <body bgcolor=#1e242e>
 	<div id="start">
 		<div class="square"></div>
-		<video src="video/01.mp4" preload id="effect1" class="effect" width="520" controls></video>
-		<video src="video/02.mp4" preload id="effect2" class="effect" width="520" controls></video>
-		<video src="video/03.mp4" preload id="effect3" class="effect" width="520" controls></video>
+		<video id="myVid" class="myVid">
+			<!-- <source src="video/01.mp4" preload id="effect1" width="520" controls></source>
+			<source src="video/02.mp4" preload id="effect2" width="520" controls></source>
+			<source src="video/03.mp4" preload id="effect3" width="520" controls></source> -->
+		</video>
 		<div id="myCanvas" class='myCanvas'></div>
 	</div>
 	<svg class="circle" height="520" width="520">
@@ -92,25 +94,22 @@
 
 						</div>
 						<div class="video-control">
-							<button class="videoButton" id='startRecording'>SAVE</button>&nbsp;&nbsp;&nbsp;
-							<button class="videoButton" id='stopRecording'>DONE</button>
+							<button class="videoButton" id='startRecording'>START</button>&nbsp;&nbsp;&nbsp;
+							<button class="videoButton" id='stopRecording'>STOP</button>&nbsp;&nbsp;&nbsp;
+							<!-- <button class="videoButton" id='reset' onclick="reset()">RESET</button> -->
 							</font>
 						</div>
-            <div id=sex></div>
+
 						<script src="js/RecordRTC.js"></script>
 						<script src="js/screenshot.js"></script>
 						<script src="build/three.js"></script>
 						<script src="js/GeometryUtils.js"></script>
 						<script src="js/WebGL.js"></script>
 						<script src="js/stats.min.js"></script>
-            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> -->
-
-            <scrip src="js/html2canvas.min.js"></script>
-						<script src="text.js"></script>
-						<script src="record.js"></script>
-						<!-- <script src="recording.js"></script> -->
-						<script src="https://www.webrtc-experiment.com/html2canvas.min.js"></script>
-
+						<scrip src="js/html2canvas.min.js">
+							</script>
+							<script src="text.js"></script>
+							<script src="record.js"></script>
 </body>
 
 </html>

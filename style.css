@@ -55,12 +55,18 @@
 		border: 0px;
 		border-radius: 5px;
 	}
-	.effect {
+	.myVid {
 		position: absolute;
 		top: 130px;
 		left: 270px;
 		float: left;
 	}
+	/* .effect {
+		position: absolute;
+		top: 130px;
+		left: 270px;
+		float: left;
+	} */
 	.square{
 		position: absolute;
 		top: 130px;

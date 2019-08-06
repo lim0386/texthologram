@@ -8,16 +8,19 @@
 		});
 
 		document.getElementById('startRecording').onclick = function() {
-		  this.disabled = true;
+			group.rotation.x = 0;
+		  group.rotation.y = 0;
+			this.disabled = true;
 
 		  isRecordingStarted = true;
 		  isStoppedRecording = false;
 		  recorder.startRecording();
 
-		  document.getElementById('stopRecording').disabled = false;
+		  // document.getElementById('stopRecording').disabled = false;
 		};
 
 		document.getElementById('stopRecording').onclick = function() {
+			console.log(group.rotation.y);
 		  this.disabled = true;
 
 		  isStoppedRecording = true;
@@ -32,5 +35,6 @@
 		    // document.getElementById("myVideo").appendChild(video);
 		    video.controls = true;
 		    video.play();
+
 		  });
 		};

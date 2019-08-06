@@ -1,13 +1,9 @@
-// var canvas = document.getElementById("myCanvas");
-// var myVideo = document.getElementById ("myVideo");
-
-// if (WEBGL.isWebGLAvailable() === false) {
-//   document.body.appendChild(WEBGL.getWebGLErrorMessage());
-// }
-// var original = document.getElementById('start');
-// var clone = original.cloneNode(true);
-// clone.id = "start" + 1;
-// original.parentNode.appendChild(clone);
+//effect video loading
+var videoSource = new Array();
+videoSource[0]='video/01.mp4';
+videoSource[1]='video/02.mp4';
+videoSource[2]='video/03.mp4';
+var videoCount = videoSource.length;
 
 THREE.Cache.enabled = true;
 var pointLight; //color of text
@@ -17,7 +13,7 @@ var group, textMesh1, textMesh2, textGeo, materials;
 var firstLetter = false;
 var text = "",
   height = 20,
-  size = 70,
+  size = 50,
   hover = 30,
   curveSegments = 4,
   bevelThickness = 2,
@@ -31,10 +27,10 @@ var rotationX = 0;
 var rotationY = 0;
 
 var textX = 0;
-var textY = 400;
+var textY = -40; //camera
 var textZ = 700;
 
-var video01, video02;
+var video;
 
 var mirror = true;
 var fontMap = {
@@ -59,12 +55,12 @@ var weightMap = {
 init();
 buttons();
 animate();
-// buttons();
-document.getElementById("effect1").hidden = true;
-document.getElementById("effect2").hidden = true;
-document.getElementById("effect3").hidden = true;
 
-function decimalToHex(d) {
+// document.getElementById("effect1").hidden = true;
+// document.getElementById("effect2").hidden = true;
+// document.getElementById("effect3").hidden = true;
+
+function decimalToHex(d) { //text color
   var hex = Number(d).toString(16);
   hex = "000000".substr(0, 6 - hex.length) + hex;
   return hex.toUpperCase();
@@ -76,29 +72,51 @@ function init() {
   document.getElementById("myCanvas").appendChild(container);
 
   // CAMERA
-	camera = new THREE.PerspectiveCamera(30, 522 / 522, 2, 1500);
+	camera = new THREE.PerspectiveCamera(30, 1, 3, 10000);
   camera.position.set(textX, textY, textZ);
-  cameraTarget = new THREE.Vector3(0, 130, 0); //Camera XYZ
+  cameraTarget = new THREE.Vector3(0, 0, 0); //Camera XYZ
 
     // SCENE
   scene = new THREE.Scene();
-  // scene.fog = null;
+  scene.fog = null;
   // here to control background video-but need overthings!
+  video = document.getElementById('myVid');
 
-var geometry = new THREE.BoxBufferGeometry( 600, 600, -522 );
-// geometry.scale( 1, 1, 1 );
-var texture = new THREE.VideoTexture( effect1 );
+
+var geometry = new THREE.BoxBufferGeometry( 700, 700, -600 ); //background video size
+// geometry.scale( 1, 0.5, 1 );
+var texture = new THREE.VideoTexture( myVid );
 var material = new THREE.MeshBasicMaterial( { map: texture } );
 var mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 
   // LIGHTS
   var dirLight = new THREE.DirectionalLight(0xffffff, 0.125);
-  dirLight.position.set(0, 0, 1).normalize();
+  dirLight.position.set(100, 100, 1).normalize();
   scene.add(dirLight);
+
+  var dirLight2 = new THREE.DirectionalLight(0xffffff, 0.125);
+  dirLight2.position.set(599, 100, 200).normalize();
+  scene.add(dirLight2);
+  var dirLight3 = new THREE.DirectionalLight(0xffffff, 0.125);
+  dirLight3.position.set(0, 100, 1).normalize();
+  scene.add(dirLight3);
+  var dirLight4 = new THREE.DirectionalLight(0xffffff, 0.125);
+  dirLight4.position.set(599, 100, 1).normalize();
+  scene.add(dirLight4);
+
+
+
   pointLight = new THREE.PointLight(0xffffff, 1.5);
-  pointLight.position.set(0, 100, 90);
+  pointLight.position.set(400, 100, 90);
   scene.add(pointLight);
+
+  // pointLight3 = new THREE.PointLight(0xffffff, 1.5);
+  // pointLight3.position.set(522, 1, -10000);
+  // scene.add(pointLight3);
+  // pointLight2 = new THREE.PointLight(0xffffff, 1.5);
+  // pointLight2.position.set(0, 1, -10000);
+  // scene.add(pointLight2);
 
   // Get text from hash
   var hash = document.location.hash.substr(1);
@@ -119,7 +137,7 @@ scene.add( mesh );
   ];
 
   group = new THREE.Group();
-  group.position.y = 100;
+  group.position.y = 0;
 
   scene.add(group);
 
@@ -129,7 +147,7 @@ scene.add( mesh );
     new THREE.PlaneBufferGeometry(10000, 10000),
     new THREE.MeshBasicMaterial({
       color: 0xffffff,
-      opacity: 0, //������
+      opacity: 0, //�
       transparent: true
     })
   );
@@ -148,11 +166,11 @@ scene.add( mesh );
   // STATS
   stats = new Stats();
 }
-function animate() {
 
+//video background
+function animate() {
   requestAnimationFrame( animate );
   update();
-
 }
 
 function update() {
@@ -319,7 +337,7 @@ function render() {
   // group.rotation.y += rotation; //ȸ���ӵ�
   group.rotation.x += rotationX;
   group.rotation.y += rotationY;
-
+  console.log(group.rotation.y);
   camera.lookAt(cameraTarget);
   renderer.clear();
   renderer.render(scene, camera);
@@ -347,73 +365,33 @@ function renderZero() {
 }
 
 function effectOne() {
-  document.getElementById("effect1").hidden = true;
-  document.getElementById("effect2").hidden = true;
-  document.getElementById("effect3").hidden = false;
-  video03 = document.getElementById("effect3");
-  video03.loop = true
-  video03.currentTime = 0;
-  var playPromise = video03.play();
+  document.getElementById("myVid").setAttribute("src",videoSource[0]);
+document.getElementById("myVid").load();
+document.getElementById("myVid").loop = true
+document.getElementById("myVid").play();
 
-  if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Automatic playback started!
-      // Show playing UI.
-      console.log("NONE");
-    })
-    .catch(error => {
-      // Auto-play was prevented
-      // Show paused UI.
-      console.log("error");
-    });
-  }
   refreshText();
 }
 
 function effectTwo() {
-  document.getElementById("effect2").hidden = true;
-  document.getElementById("effect1").hidden = false;
-  document.getElementById("effect3").hidden = true;
-  video02 = document.getElementById("effect1");
-  video02.loop = true
-  video02.currentTime = 0;
-  var playPromise = video02.play();
+  document.getElementById("myVid").setAttribute("src",videoSource[1]);
+document.getElementById("myVid").load();
+document.getElementById("myVid").loop = true
+document.getElementById("myVid").play();
 
-  if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Automatic playback started!
-      // Show playing UI.
-      console.log("NONE");
-    })
-    .catch(error => {
-      // Auto-play was prevented
-      // Show paused UI.
-      console.log("error");
-    });
-  }
   refreshText();
 }
 
 function effectThree() {
-  document.getElementById("effect1").hidden = true;
-  document.getElementById("effect2").hidden = false;
-  document.getElementById("effect3").hidden = true;
-  video02 = document.getElementById("effect2");
-  video02.loop = true
-  video02.currentTime = 0;
-  var playPromise = video02.play();
-
-  if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Automatic playback started!
-      // Show playing UI.
-      console.log("NONE");
-    })
-    .catch(error => {
-      // Auto-play was prevented
-      // Show paused UI.
-      console.log("error");
-    });
-  }
+  document.getElementById("myVid").setAttribute("src",videoSource[2]);
+document.getElementById("myVid").load();
+document.getElementById("myVid").loop = true
+document.getElementById("myVid").play();
   refreshText();
+}
+
+function reset() {
+  window.location.reload();
+  // group.rotation.x = 0;
+  // group.rotation.y = 0;
 }
