@@ -71,34 +71,26 @@ function decimalToHex(d) {
 }
 
 function init() {
+
   const container = document.createElement('div');
   document.getElementById("myCanvas").appendChild(container);
 
-  // video01 = document.getElementById("effect1");
-  // video02 = document.getElementById("effect2");
-  // video01.loop = true
-  // var playPromise = video01.play();
-  //
-  // if (playPromise !== undefined) {
-  //   playPromise.then(_ => {
-  //     // Automatic playback started!
-  //     // Show playing UI.
-  //     console.log("NONE");
-  //   })
-  //   .catch(error => {
-  //     // Auto-play was prevented
-  //     // Show paused UI.
-  //     console.log("error");
-  //   });
-  // }
   // CAMERA
 	camera = new THREE.PerspectiveCamera(30, 522 / 522, 2, 1500);
   camera.position.set(textX, textY, textZ);
-  cameraTarget = new THREE.Vector3(0, 104, 0);
+  cameraTarget = new THREE.Vector3(0, 130, 0); //Camera XYZ
 
-  // SCENE
+    // SCENE
   scene = new THREE.Scene();
-  scene.fog = null;
+  // scene.fog = null;
+  // here to control background video-but need overthings!
+
+var geometry = new THREE.BoxBufferGeometry( 600, 600, -522 );
+// geometry.scale( 1, 1, 1 );
+var texture = new THREE.VideoTexture( effect1 );
+var material = new THREE.MeshBasicMaterial( { map: texture } );
+var mesh = new THREE.Mesh( geometry, material );
+scene.add( mesh );
 
   // LIGHTS
   var dirLight = new THREE.DirectionalLight(0xffffff, 0.125);
@@ -156,7 +148,16 @@ function init() {
   // STATS
   stats = new Stats();
 }
+function animate() {
 
+  requestAnimationFrame( animate );
+  update();
+
+}
+
+function update() {
+  renderer.render( scene, camera );
+}
 function buttons() {
   document.getElementById("buttonRed").addEventListener('click', function() {
     pointLight.color.setHex(0xff0000);
