@@ -35,8 +35,8 @@ var video;
 var mirror = true;
 var fontMap = {
   "NanumMyeongjo": 0,
-  "NanumGothic": 1,
-  "optimer": 2
+  "Tium": 1,
+  "TmonMonsoriBlack": 2
 };
 
 var weightMap = {
@@ -234,12 +234,12 @@ function fontOne() {
 }
 
 function fontTwo() {
-  fontName = "NanumGothic";
+  fontName = "Dream1";
   loadFont();
 }
 
 function fontThree() {
-  fontName = "helvetiker";
+  fontName = "TmonMonsoriBlack";
   loadFont();
 }
 
