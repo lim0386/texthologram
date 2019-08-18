@@ -25,7 +25,13 @@
 
 		  isStoppedRecording = true;
 		  recorder.stopRecording(function(url) {
+				var d = new Date();
 		    var blob = recorder.getBlob();
+				// var fileName = d + '.webm';
+				var fileName = d + '.mp4';
+
+            invokeSaveAsDialog(this.getBlob(), fileName);
+
 		    var video = document.createElement('video');
 		    video.src = URL.createObjectURL(blob);
 		    video.setAttribute('style', 'position: absolute; width:520px; height:520px%; top:130px; left:270px');
