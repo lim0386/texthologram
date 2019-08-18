@@ -1,8 +1,8 @@
 //effect video loading
 var videoSource = new Array();
-videoSource[0]='video/01.mp4';
-videoSource[1]='video/02.mp4';
-videoSource[2]='video/03.mp4';
+videoSource[0] = 'video/01.mp4';
+videoSource[1] = 'video/02.mp4';
+videoSource[2] = 'video/03.mp4';
 var videoCount = videoSource.length;
 
 THREE.Cache.enabled = true;
@@ -25,6 +25,10 @@ var text = "",
 
 var rotationX = 0;
 var rotationY = 0;
+
+var buttonP = 0;
+var pX = 0;
+var pY = 0;
 
 var textX = 0;
 var textY = -40; //camera
@@ -72,23 +76,25 @@ function init() {
   document.getElementById("myCanvas").appendChild(container);
 
   // CAMERA
-	camera = new THREE.PerspectiveCamera(30, 1, 3, 10000);
+  camera = new THREE.PerspectiveCamera(30, 1, 3, 10000);
   camera.position.set(textX, textY, textZ);
   cameraTarget = new THREE.Vector3(0, 0, 0); //Camera XYZ
 
-    // SCENE
+  // SCENE
   scene = new THREE.Scene();
   scene.fog = null;
   // here to control background video-but need overthings!
   video = document.getElementById('myVid');
 
 
-var geometry = new THREE.BoxBufferGeometry( 700, 700, -600 ); //background video size
-// geometry.scale( 1, 0.5, 1 );
-var texture = new THREE.VideoTexture( myVid );
-var material = new THREE.MeshBasicMaterial( { map: texture } );
-var mesh = new THREE.Mesh( geometry, material );
-scene.add( mesh );
+  var geometry = new THREE.BoxBufferGeometry(700, 700, -600); //background video size
+  // geometry.scale( 1, 0.5, 1 );
+  var texture = new THREE.VideoTexture(myVid);
+  var material = new THREE.MeshBasicMaterial({
+    map: texture
+  });
+  var mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
 
   // LIGHTS
   var dirLight = new THREE.DirectionalLight(0xffffff, 0.125);
@@ -169,13 +175,14 @@ scene.add( mesh );
 
 //video background
 function animate() {
-  requestAnimationFrame( animate );
+  requestAnimationFrame(animate);
   update();
 }
 
 function update() {
-  renderer.render( scene, camera );
+  renderer.render(scene, camera);
 }
+
 function buttons() {
   document.getElementById("buttonRed").addEventListener('click', function() {
     pointLight.color.setHex(0xff0000);
@@ -337,7 +344,54 @@ function render() {
   // group.rotation.y += rotation; //ȸ���ӵ�
   group.rotation.x += rotationX;
   group.rotation.y += rotationY;
-  console.log(group.rotation.y);
+
+  console.log(buttonP);
+  // console.log(group.rotation.x+", "+group.rotation.y);
+  if (buttonP == 1) {
+    // console.log("I 1")
+    if (group.rotation.y > 6) {
+      stopRecording();
+      // document.getElementById('stopRecording').onclick;
+    }
+    if (group.rotation.y < -6) {
+      stopRecording();
+      // document.getElementById('stopRecording').onclick;
+    }
+    if (group.rotation.x > 6) {
+      stopRecording();
+      // document.getElementById('stopRecording').onclick;
+    }
+  }
+  if (buttonP == 2) {
+    if (group.rotation.y > 12) {
+      stopRecording();
+      // document.getElementById('stopRecording').onclick;
+    }
+    if (group.rotation.y < -12) {
+      stopRecording();
+      // document.getElementById('stopRecording').onclick;
+    }
+    if (group.rotation.x > 12) {
+      stopRecording();
+      // document.getElementById('stopRecording').onclick;
+    }
+  }
+  // if (buttonP == 3) {
+  if (group.rotation.y > 18) {
+    stopRecording();
+    // document.getElementById('stopRecording').onclick;
+  }
+  if (group.rotation.y < -18) {
+    stopRecording();
+    // document.getElementById('stopRecording').onclick;
+  }
+  if (group.rotation.x > 18) {
+    stopRecording();
+    // document.getElementById('stopRecording').onclick;
+  }
+  // }
+
+
   camera.lookAt(cameraTarget);
   renderer.clear();
   renderer.render(scene, camera);
@@ -365,28 +419,28 @@ function renderZero() {
 }
 
 function effectOne() {
-  document.getElementById("myVid").setAttribute("src",videoSource[0]);
-document.getElementById("myVid").load();
-document.getElementById("myVid").loop = true
-document.getElementById("myVid").play();
+  document.getElementById("myVid").setAttribute("src", videoSource[0]);
+  document.getElementById("myVid").load();
+  document.getElementById("myVid").loop = true
+  document.getElementById("myVid").play();
 
   refreshText();
 }
 
 function effectTwo() {
-  document.getElementById("myVid").setAttribute("src",videoSource[1]);
-document.getElementById("myVid").load();
-document.getElementById("myVid").loop = true
-document.getElementById("myVid").play();
+  document.getElementById("myVid").setAttribute("src", videoSource[1]);
+  document.getElementById("myVid").load();
+  document.getElementById("myVid").loop = true
+  document.getElementById("myVid").play();
 
   refreshText();
 }
 
 function effectThree() {
-  document.getElementById("myVid").setAttribute("src",videoSource[2]);
-document.getElementById("myVid").load();
-document.getElementById("myVid").loop = true
-document.getElementById("myVid").play();
+  document.getElementById("myVid").setAttribute("src", videoSource[2]);
+  document.getElementById("myVid").load();
+  document.getElementById("myVid").loop = true
+  document.getElementById("myVid").play();
   refreshText();
 }
 
@@ -394,4 +448,29 @@ function reset() {
   window.location.reload();
   // group.rotation.x = 0;
   // group.rotation.y = 0;
+}
+
+function buttonStop() {
+  console.log("STOPSTOPSTOP");
+  if (group.rotation.y < 6 || group.rotation.y > -6 || group.rotation.x < 6) {
+    buttonP = 1;
+  }
+  if (group.rotation.y < 12 && group.rotation.y > 6) {
+    buttonP = 2;
+  }
+  if (group.rotation.y > -12 && group.rotation.y < -6) {
+    buttonP = 2;
+  }
+  if (group.rotation.x < 12 && group.rotation.x > 6) {
+    buttonP = 2;
+  }
+  // if (group.rotation.y > 12) {
+  //   buttonP = 3;
+  // }
+  // if (group.rotation.y < -12) {
+  //   buttonP = 3;
+  // }
+  // if (group.rotation.x > 12) {
+  //   buttonP = 3;
+  // }
 }

@@ -11,16 +11,16 @@
 			group.rotation.x = 0;
 		  group.rotation.y = 0;
 			this.disabled = true;
-
 		  isRecordingStarted = true;
 		  isStoppedRecording = false;
 		  recorder.startRecording();
 
 		  // document.getElementById('stopRecording').disabled = false;
 		};
+    function stopRecording(){
+		// document.getElementById('stopRecording').onclick = function() {
 
-		document.getElementById('stopRecording').onclick = function() {
-			console.log(group.rotation.y);
+			console.log(group.rotation.x);
 		  this.disabled = true;
 
 		  isStoppedRecording = true;
@@ -43,4 +43,4 @@
 		    video.play();
 
 		  });
-		};
+		}
